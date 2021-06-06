@@ -61,12 +61,6 @@ currentDay();
 
 var storedInput = localStorage.getItem("textInput"); //whatever is saved in local storage 'textInput' the browser will retreive
 
-textInput.addEventListener('input', tasks => {
-  textInput.textContent = tasks.target.value
-  });
-
-
-
 
 
 
@@ -74,18 +68,24 @@ var textInput = document.querySelectorAll(".description"); //text input into the
 var savedInput = JSON.parse(localStorage.getItem("textInput")) || [];
 
 for (var i=0; i<btnLength; i++) {
-  buttons[i].addEventListener('click', function () {
+  buttons[i].addEventListener('click', function (event) {
    
+    var btnClicked = event.target;  //targets the button click in order to give us an instance of the button element
+    var rowParent = btnClicked.parentElement.parentElement;  //in order to get value of the textarea, need to grab the parent's element property
+    var textarea = rowParent.querySelector("textarea");  //need to now grab the child element in order to get value of the textarea
+
+
     var selectedText = {
-      text: document.querySelectorAll(".description").value,
-      time: timeEl.textContent = moment().format("dddd, MMMM Do YYYY, h:mm:ss a"),
+      text: textarea.value,
+      time: timeEl.textContent = moment().format("dddd, MMMM Do YYYY, h:mm a"),
     }; //objects will be pushed into local storage
     
-    savedInput.push(selectedText);
+    savedInput.push(selectedText);  //will push 'savedInput' into the object 'selectedText'
   
-    localStorage.setItem('textInput', JSON.stringify(savedInput));
-    alert("Schedule has been saved");
-    console.log("Schedule saved")
+    localStorage.setItem('textInput', JSON.stringify(savedInput));  //saves object 'savedInput' into local storage into string
+    alert("Schedule saved"); //will alert user that their schedule is saved
+    console.log("Schedule saved")  //will console log schedule that's saved
+
 
   }, false);
   };  //eventListener for save buttons -- if multiple save buttons, have to create a for-loop for event listener to apply to each
