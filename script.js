@@ -14,8 +14,6 @@ var five = timeBlocks[11].firstChild.data;
 
 var selectedBlocks = [six, seven, eight, nine, ten, eleven, twelve, one, two, three, four, five];
 
-console.log(selectedBlocks[5]);
-
 
 var timeEl = document.getElementById("currentDay");
 
@@ -31,42 +29,63 @@ currentDay();
 
 
 //find a way to grab elements of the time-blocks and create a for loop
-// function agendaTasks() {
-//   var currentTime = moment().format("h:mm a");
+function agendaTasks() {
+  var currentTime = moment().format("h:mm a");
 
-//   console.log(currentTime);
-
-//   for(var i=0; i<selectedBlocks.length; i++){
+  for(var i=0; i<selectedBlocks.length; i++){
   
-//     if (selectedBlocks[i] < currentTime) {
-//       console.log("this time is in the past!");
-//       selectedBlocks[i].style.color = "grey";
-      
-//     };
+    if (currentTime > selectedBlocks[i]) {
+      console.log("Ahead of time!");
+      selectedBlocks [i] = document.querySelector(".hour");
+      selectedBlocks[i].style.backgroundColor = "green";
+    } else if (currentTime < selectedBlocks[i]) {
+      console.log("Running behind!");
+      selectedBlocks[i] = document.querySelector(".hour");
+      selectedBlocks[i].style.backgroundColor = "red";
+    } else if (currentTime === selectedBlocks[i]) {
+      console.log("Just on time!");
+      selectedBlocks[i] = document.querySelector(".hour");
+      selectedBlocks[i].style.backgroundColor = "none";
+    };
+
+  };
+};
+agendaTasks();
 
 
+// var buttons = document.querySelectorAll(".btn"); //save buttons 
+// var btnLength = buttons.length; //since generating an array, need to grab length and generate a for loop so event listener can apply to all buttons
+
+// var textInput = document.querySelectorAll(".description").value; //text input into the text area
+
+
+// var storageInput = document.querySelectorAll(".storageInput");
+
+// var storedInput = localStorage.getItem("textInput"); //whatever is saved in local storage 'textInput' the browser will retreive
+
+
+
+
+// function saveToLocalStorage () {
+
+  
+//   localStorage.setItem('textInput', textInput.textContent);
+  
 // };
-//   };
 
 
 
-var textInput = document.querySelectorAll(".description").value; //text input into the text area
-var storageInput = document.querySelectorAll(".storageInput");
-var saveBtn = document.querySelectorAll(".btn"); //save button
-var storedInput = localStorage.getItem("textInput"); //whatever is saved in local storage 'textInput' the browser will retreive
-
-if(textInput) {
-  textInput.textContent = storedInput;
-};
 
 
-function saveToLocalStorage () {
-  localStorage.setItem('textInput', textInput.textContent);
-  
-};
+
+// var savedInput = JSON.parse(localStorage.getItem("textInput"));
 
 
-saveBtn.addEventListener("click", saveToLocalStorage);
+// for (var i=0; i<btnLength; i++) {
+//   buttons[i].addEventListener('click', saveToLocalStorage);  //eventListener for save buttons -- if multiple save buttons, have to create a for-loop for event listener to apply to each
+// };
+
+
 
 
 //create local storage -- key value pairs
@@ -75,4 +94,3 @@ saveBtn.addEventListener("click", saveToLocalStorage);
 
 //add event listener for save button to save to local storage and to remain displayed onto the page
 
-//var savedInput = JSON.parse(localStorage.getItem("textInput")) || [];
