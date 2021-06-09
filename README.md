@@ -7,7 +7,7 @@ When the user first logs onto the webpage, the current date and time will be dis
 
 Throughout the day, the scheduler will notate what time of the day the user is on - past, present, or future.  For instance, when the user's current time is equaled to the time displayed then the planner will have the time-block for their current time in red.  The schedule will then display any futures time-blocks in green and any past time blocks in grey -- all indicating to the user what part of his scheduler is relevant, is coming up, and what has already passed.
 
-![The following image shows an example of the highlighted time-blocks based off the hour of 7am.  7am is in red, 8am - 12pm is in green, and the remainder of the times surrounding are greyed out](images\past-present-future_image.PNG)
+![The following image shows an example of the highlighted time-blocks based off the hour of 7am.  7am is in red, 8am - 12pm is in green, and the remainder of the times surrounding are greyed out](https://raw.githubusercontent.com/pazjenni04/daily_agenda/main/images/past-present-future_image.PNG)
 
 Once the user enters a task into the scheduler, they have the option to save it to local storage in which will time-stamp the time the task was saved and the note the user inserted.  
 
