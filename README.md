@@ -11,7 +11,7 @@ Throughout the day, the scheduler will notate what time of the day the user is o
 
 Once the user enters a task into the scheduler, they have the option to save it to local storage in which will time-stamp the time the task was saved and the note the user inserted.  
 
-![The following image shows an example of the task a user can save onto their local storage to be retrieved in the future](images\local-storage_image.PNG)
+![The following image shows an example of the task a user can save onto their local storage to be retrieved in the future](https://raw.githubusercontent.com/pazjenni04/daily_agenda/main/images/local-storage_image.PNG)
 
 When the user then reloads the page, the local storage will have saved their saved task and time-stamp.
 
