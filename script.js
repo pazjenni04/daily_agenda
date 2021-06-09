@@ -1,5 +1,7 @@
 var timeBlocks = document.querySelectorAll(".time-block");
-var six = timeBlocks[0].firstChild.data;
+
+//the following variables captures the time inside the innerHTML
+var six = timeBlocks[0].firstChild.data; 
 var seven = timeBlocks[1].firstChild.data;
 var eight = timeBlocks[2].firstChild.data;
 var nine = timeBlocks[3].firstChild.data;
@@ -12,13 +14,24 @@ var three = timeBlocks[9].firstChild.data;
 var four = timeBlocks[10].firstChild.data;
 var five = timeBlocks[11].firstChild.data;
 
-var selectedBlocks = [six, seven, eight, nine, ten, eleven, twelve, one, two, three, four, five];
+
+var selectedBlocks = [six, seven, eight, nine, ten, eleven, twelve, one, two, three, four, five];  //turned variables into an array in order to easily access
+
+//converting all indexes within the array into integers in order to compare to time
+for(var i=0; i<selectedBlocks.length;i++) {
+  selectedBlocks[i] = parseInt(selectedBlocks[i]);
+};
+
+
+console.log(selectedBlocks);
+
 
 var buttons = document.querySelectorAll(".btn"); //save buttons 
 var btnLength = buttons.length; //since generating an array, need to grab length and generate a for loop so event listener can apply to all buttons
 
-var timeEl = document.getElementById("currentDay");
+var timeEl = document.getElementById("currentDay");  //will display the current time onto the top of the page
 
+//time and current date displayed onto page
 function currentDay() {
     
     var timeInterval = setInterval(function() {
@@ -29,39 +42,48 @@ function currentDay() {
 currentDay();
 
 
-//find a way to grab elements of the time-blocks and create a for loop
-// function agendaTasks() {
-//   var currentTime = moment().format("h:mm a");
+// find a way to grab elements of the time-blocks and create a for loop
 
-//   for(var i=0; i<selectedBlocks.length; i++){
+  var currentTime = parseInt(moment().format("H")); //creating the current hour into an integer to compare to the values of the time blocks in the scheduler
+
+  console.log(currentTime);
+
+  //function runs a for loop to indicate to user if running behind, on-time, or what is scheduled for the future
+  function agendaTasks(event) {
+
+    for(var i=0; i<selectedBlocks.length; i++){
+      var hourBlock = document.getElementById(selectedBlocks[i].toString());
+     
+      if (hourBlock){
+        if (currentTime === selectedBlocks[i]) {
+          console.log("Just on time!");
+          hourBlock.classList.remove("past"); //removes hard coded .past and replaces with .present css code
+          hourBlock.classList.add('present');
+          
+        } else if (currentTime > selectedBlocks[i]) {
+          console.log("Time is in the past");
+          
+        } else if (currentTime < selectedBlocks[i]) {
+          console.log("Running ahead!");
+          hourBlock.classList.remove("past");
+          hourBlock.classList.add('future');
+          
   
-//     if (currentTime > selectedBlocks[i]) {
-//       console.log("Ahead of time!");
-//       selectedBlocks [i] = document.querySelector(".hour");
-//       selectedBlocks[i].style.backgroundColor = "green";
-//     } else if (currentTime < selectedBlocks[i]) {
-//       console.log("Running behind!");
-//       selectedBlocks[i] = document.querySelector(".hour");
-//       selectedBlocks[i].style.backgroundColor = "red";
-//     } else if (currentTime === selectedBlocks[i]) {
-//       console.log("Just on time!");
-//       selectedBlocks[i] = document.querySelector(".hour");
-//       selectedBlocks[i].style.backgroundColor = "none";
-//     };
+          
+        };
+      }
+      
+    };
+  
+  };
 
-//   };
-// };
-// agendaTasks();
-
-
-
+  agendaTasks();
+ 
 
 
 
 
 var storedInput = localStorage.getItem("textInput"); //whatever is saved in local storage 'textInput' the browser will retreive
-
-
 
 
 var textInput = document.querySelectorAll(".description"); //text input into the text area
@@ -90,24 +112,9 @@ for (var i=0; i<btnLength; i++) {
   }, false);
   };  //eventListener for save buttons -- if multiple save buttons, have to create a for-loop for event listener to apply to each
 
- 
- 
-  
 
 
 
 
 
-
-
-
-
-
-
-
-//create local storage -- key value pairs
-//set to push into local storage -- have to set local storage
-//get pulls from local storage -- have to set something into local storage before retrieving it
-
-//add event listener for save button to save to local storage and to remain displayed onto the page
 
